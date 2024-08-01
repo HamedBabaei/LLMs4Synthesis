@@ -1,0 +1,7 @@
+Generate a synthesis from the provided papers as content on the research problem "{research_problem}" into a concise single paragraph of no more than 200 words. Follow these instructions:
+- Only the titles and abstracts will be provided from exactly five scientific papers which are to be used as the content for the synthesis.
+- {synthesis_type}
+- Support each claim with citations, formatted as (1) or (3, 5) to refer to the respective papers' content, where the numbers correspond to the list of provided papers.
+- Ensure the output is formatted as a single cohesive paragraph without section headings, titles, abstracts, or any paper-like structure. The focus should be on integrating and synthesizing the content into a unified narrative.
+- Focus on essential information, maintaining clarity and precision.
+- Do not include additional information or exceed the specified word count of 200 words and the single paragraph synthesis output requirement.

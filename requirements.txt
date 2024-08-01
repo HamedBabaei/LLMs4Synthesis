@@ -1,0 +1,6 @@
+pandas
+openpyxl
+trl
+peft
+torch
+openai
