@@ -71,11 +71,11 @@ if __name__ == '__main__':
         ]
     else:
         inf_configs = [
-            # (args.llm_warmup_dir, args.llm_warmup_inf),                           # Finetuned
-            # (args.rlhf_style_warmup_dir+"/epoch-0", args.rlhf_style_warmup_inf),  # Finetuned + RLHF (w/Basic Features)
-            # (args.rlhf_style_dir, args.rlhf_style_inf),                           # RLHF (w/Basic Features)
-            # (args.rlhf_style_gpt4_warmup_dir, args.rlhf_style_gpt4_warmup_inf),   # Finetuned + RLHF (w/Basic Features) + RLHF (w/GPT4 Features)*
-            # (args.rlhf_style_gpt4_dir, args.rlhf_style_gpt4_inf),                   # RLHF (w/Basic Features) + RLHF (w/GPT4 Features) *
+            (args.llm_warmup_dir, args.llm_warmup_inf),                           # SFT
+            (args.rlhf_style_warmup_dir, args.rlhf_style_warmup_inf),             # SFT + RL (w/Basic Features)
+            (args.rlhf_style_dir, args.rlhf_style_inf),                           # RL (w/Basic Features)
+            (args.rlhf_style_gpt4_warmup_dir, args.rlhf_style_gpt4_warmup_inf),   # SFT + RL (w/Basic Features) + RLAIF (w/GPT4 Features)
+            (args.rlhf_style_gpt4_dir, args.rlhf_style_gpt4_inf),                 # RL (w/Basic Features) + RLAIF (w/GPT4 Features)
         ]
 
     for llm_dir, inf_path in inf_configs:
