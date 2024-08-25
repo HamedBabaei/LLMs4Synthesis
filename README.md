@@ -27,7 +27,7 @@ The **ORKG Synthesis Dataset** is avaliable at  https://anonymous.4open.science/
 
 ### Installation
 You can also install and use the LLMs4OM using the following commands.
-```
+```cmd
 git clone https://github.com/xxx/LLMs4Synthesis.git
 cd LLMs4Synthesis
 
