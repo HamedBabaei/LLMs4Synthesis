@@ -1,0 +1,25 @@
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+    -   id: check-merge-conflict
+    -   id: check-added-large-files
+        args: ["--maxkb=30000"]
+    -   id: check-byte-order-marker
+    -   id: detect-private-key
+    -   id: fix-encoding-pragma
+    -   id: mixed-line-ending
+    -   id: end-of-file-fixer
+    -   id: fix-encoding-pragma
+    -   id: trailing-whitespace
+    -   id: requirements-txt-fixer
+-   repo: https://github.com/PyCQA/flake8
+    rev: 6.0.0
+    hooks:
+    -   id: flake8
+-   repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.1.1
+    hooks:
+      - id: ruff
+        args: [ --fix, --exit-non-zero-on-fix ]
+        exclude: ^(__init__.py)$

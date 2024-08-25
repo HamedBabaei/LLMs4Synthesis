@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import streamlit as st
 import json
 from collections import Counter
@@ -18,8 +19,6 @@ def display_json_item(data, index):
             updated_value = st.text_input(f"{key}:", value, key=f"{index}_{key}")
             # Update the item in the data list
             item[key] = int(updated_value)  # Assuming reward is an integer
-
-
     # Calculate reward statistics
     reward_values = [item['reward'] for item in data]
     reward_counts = Counter(reward_values)

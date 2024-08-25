@@ -1,3 +1,5 @@
-# LLMs4SS
+# LLMs4Synthesis: Leveraging Large Language Models for Scientific Synthesis
+
+In response to the growing complexity and volume of scientific literature, this paper introduces the LLMs4Synthesis framework, designed to enhance the capabilities of Large Language Models (LLMs) in generating high-quality scientific syntheses. This framework addresses the need for rapid, coherent, and contextually rich integration of scientific insights, leveraging both open-source and proprietary LLMs. It also examines the effectiveness of LLMs in evaluating the integrity and reliability of these syntheses, alleviating inadequacies in current quantitative metrics. Our study contributes to this field by developing a novel methodology for processing scientific papers, defining new synthesis types, and establishing nine detailed quality criteria for evaluating syntheses. The integration of LLMs with reinforcement learning and AI feedback is proposed to optimize synthesis quality, ensuring alignment with established criteria. The LLMs4Synthesis framework and its components are made available, promising to enhance both the generation and evaluation processes in scientific research synthesis.
 
 * ORKG Synthesis Dataset: https://anonymous.4open.science/r/scisynthesis-F6BA/

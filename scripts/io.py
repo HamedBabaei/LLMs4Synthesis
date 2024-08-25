@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 
 # -*- coding: utf-8 -*-
 """
@@ -18,8 +19,10 @@ def read_tsv(input_path: str) -> pd:
     """
     return pd.read_csv(input_path, sep="\t")
 
+
 def read_csv(input_path: str) -> pd:
     return pd.read_csv(input_path)
+
 
 def read_excel(input_path: str) -> pd:
     df = pd.read_excel(input_path)
@@ -56,9 +59,8 @@ def mkdir(path):
     if not os.path.exists(path):
         os.mkdir(path)
 
+
 def read_text(input_path: str) -> str:
     with open(input_path, 'r') as f:
         text = f.read()
     return text
-
-    

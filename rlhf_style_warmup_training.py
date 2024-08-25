@@ -1,12 +1,12 @@
+# -*- coding: utf-8 -*-
 # args.llm_warmup_dir  (in model)
 # args.rlhf_style_warmup_optimizer_name
 # args.rlhf_style_warmup_dir
 
 import torch
-from transformers import AutoTokenizer, BitsAndBytesConfig
+from transformers import AutoTokenizer
 from trl import AutoModelForCausalLMWithValueHead, PPOConfig, PPOTrainer
 from peft import LoraConfig
-import random
 from tqdm import tqdm
 from dotenv import find_dotenv, load_dotenv
 import os
@@ -26,6 +26,7 @@ _ = load_dotenv(find_dotenv())
 
 access_token = os.environ['HUGGINGFACE_ACCESS_TOKEN']
 
+
 def build_dataset(dataset, tokenizer, input_max_text_length):
     def tokenize(sample):
         prompt = sample["prompt"]
@@ -38,8 +39,10 @@ def build_dataset(dataset, tokenizer, input_max_text_length):
     ds.set_format(type="torch")
     return ds
 
+
 def collator(data):
     return {key: [d[key] for d in data] for key in data[0]}
+
 
 if __name__ == "__main__":
     args = BaseConfig().get_args()
@@ -48,15 +51,15 @@ if __name__ == "__main__":
     print("args.rlhf_style_warmup_optimizer_name:", args.rlhf_style_warmup_optimizer_name)
     print("args.base_model_id:", args.base_model_id)
     print("args.rlhf_style_warmup_dir:", args.rlhf_style_warmup_dir)
-    print("---"*30)
+    print("---" * 30)
 
-    df = io.read_csv(args.orkg_synthesis_train_rlhf) 
-    
+    df = io.read_csv(args.orkg_synthesis_train_rlhf)
+
     print("size of the dataset is: ", df.shape[0])
     print(df.columns)
 
-    dataset_builder = SynthesisDatasetBuilder(df=df, 
-                                              prompt_template=args.synthesis_prompt_template, 
+    dataset_builder = SynthesisDatasetBuilder(df=df,
+                                              prompt_template=args.synthesis_prompt_template,
                                               synthesis_type_dict=args.synthesis_type_dict)
 
     train_data = dataset_builder.orkg_synthesis_rlhf()
@@ -75,18 +78,18 @@ if __name__ == "__main__":
     )
 
     model = AutoModelForCausalLMWithValueHead.from_pretrained(
-        args.llm_warmup_dir, 
+        args.llm_warmup_dir,
         load_in_4bit=True,
         peft_config=peft_config,
         device_map='balanced',
         bnb_4bit_compute_dtype=torch.float16
     )
     if args.optimizer_type == 'adafactor':
-        optimizer=Adafactor(model.parameters(), lr=args.ppo_learning_rate, relative_step=False)
+        optimizer = Adafactor(model.parameters(), lr=args.ppo_learning_rate, relative_step=False)
     else:
         optimizer = torch.optim.Adam(filter(lambda p: p.requires_grad, model.parameters()), lr=args.ppo_learning_rate)
-        
-    padding_side = 'left' if  args.is_llama else "right"
+
+    padding_side = 'left' if args.is_llama else "right"
     tokenizer = AutoTokenizer.from_pretrained(args.base_model_id, padding_side=padding_side, token=access_token)
     tokenizer.pad_token = tokenizer.eos_token
     torch.cuda.empty_cache()
@@ -101,7 +104,7 @@ if __name__ == "__main__":
         mini_batch_size=args.ppo_mini_batch_size,
         gradient_accumulation_steps=args.ppo_gradient_accumulation_steps,
         log_with='tensorboard',
-        project_kwargs={'logging_dir':args.rlhf_style_warmup_dir},
+        project_kwargs={'logging_dir': args.rlhf_style_warmup_dir},
         # kl_penalty='full'
     )
 
@@ -114,7 +117,7 @@ if __name__ == "__main__":
         data_collator=collator,
         optimizer=optimizer,
         num_shared_layers=4,
-        
+
     )
 
     generation_kwargs = {
@@ -133,15 +136,15 @@ if __name__ == "__main__":
         for batch_no, batch in tqdm(enumerate(ppo_trainer.dataloader)):
             query_tensors = batch["input_ids"]
             print(f"Epoch:{epoch}/{args.rlhf_num_train_epochs} -- Batch No: {batch_no}/{len(train_data)//args.ppo_batch_size} -- step: {train_step}")
-            
+
             response_tensors = []
             for query in query_tensors:
                 response = ppo_trainer.generate(query, return_prompt=False, **generation_kwargs)
                 # print("Generation size:", len(response[0]))
                 response_tensors.append(response.squeeze())
-                
+
             batch["response"] = [tokenizer.decode(r.squeeze()) for r in response_tensors]
-            
+
             rewards = [torch.tensor(float(reward_model.get_reward(output))) for output in batch["response"]]
             for output in batch["response"]:
                 rewards_lst.append(reward_model.get_reward(output))
@@ -151,17 +154,16 @@ if __name__ == "__main__":
             stats = ppo_trainer.step(query_tensors, response_tensors, rewards)
             batch['batch-no'] = f"Epoch:{epoch}/{args.rlhf_num_train_epochs} -- Batch No: {batch_no}/{len(train_data)//args.ppo_batch_size} -- step: {train_step}"
             ppo_trainer.log_stats(stats, batch, rewards)
-            
+
             torch.cuda.empty_cache()
-            
-            if train_step%100 == 0:
+
+            if train_step % 100 == 0:
                 print("Run ppo_trainer.save_pretrained!")
                 ppo_trainer.save_pretrained(os.path.join(args.rlhf_style_warmup_dir, f"step-{str(train_step)}"))
             train_step += 1
 
-            print("--"*40)
+            print("--" * 40)
 
         print("Run ppo_trainer.save_pretrained!")
         ppo_trainer.save_pretrained(os.path.join(args.rlhf_style_warmup_dir, f"epoch-{str(epoch)}"))
     ppo_trainer.save_pretrained(args.rlhf_style_warmup_dir)
-        

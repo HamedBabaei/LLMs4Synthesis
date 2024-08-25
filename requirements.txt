@@ -1,6 +1,6 @@
-pandas
+openai
 openpyxl
-trl
+pandas
 peft
 torch
-openai
+trl
