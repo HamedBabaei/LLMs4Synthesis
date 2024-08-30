@@ -13,17 +13,17 @@
 
 ### What is the LLMs4Synthesis?
 
-In response to the growing complexity and volume of scientific literature, this work introduces the LLMs4Synthesis framework, designed to enhance the capabilities of Large Language Models (LLMs) in generating high-quality scientific syntheses. The following diagram represent the LLMs4Synthesis framework.
+In response to the growing complexity and volume of scientific literature, this work introduces the LLMs4Synthesis framework, designed to enhance the capabilities of Large Language Models (LLMs) in generating high-quality scientific syntheses. The following diagram represents the LLMs4Synthesis framework.
 
 <div align="center">
- <img src="images/LLMs4Synthesis.jpg" width="1000" height="400"/>
+ <img src="images/LLMs4Synthesis.jpg"/>
 </div>
 
 This framework addresses the need for rapid, coherent, and contextually rich integration of scientific insights, leveraging both open-source and proprietary LLMs. It also examines the effectiveness of LLMs in evaluating the integrity and reliability of these syntheses, alleviating inadequacies in current quantitative metrics. Our study contributes to this field by developing a novel methodology for processing scientific papers, defining new synthesis types, and establishing nine detailed quality criteria for evaluating syntheses. The integration of LLMs with reinforcement learning and AI feedback is proposed to optimize synthesis quality, ensuring alignment with established criteria. The LLMs4Synthesis framework and its components are made available, promising to enhance both the generation and evaluation processes in scientific research synthesis.
 
 
 ### ORKG synthesis dataset
-The **ORKG Synthesis Dataset** is avaliable at  https://anonymous.4open.science/r/scisynthesis-F6BA/.
+The **ORKG Synthesis Dataset** is available at  https://anonymous.4open.science/r/scisynthesis-F6BA/.
 
 ### Installation
 You can also install and use the LLMs4OM using the following commands.
@@ -43,16 +43,16 @@ To run the models run the following command lines:
 # SFT
 python3.9 llm_finetuning.py
 
-# RL (w/ Basic Feaatures)
+# RL (w/ Basic Features)
 python3.9 rlhf_style_training.py
 
-# SFT + RL (w/ Basic Feaatures)
+# SFT + RL (w/ Basic Features)
 python3.9 rlhf_style_warmup_training.py
 
-# RLAIF (w/ GPT-4 Feaatures)
+# RLAIF (w/ GPT-4 Features)
 python3.9 rlhf_style_gpt4_training.py
 
-# SFT + RLAIF (w/ GPT-4 Feaatures)
+# SFT + RLAIF (w/ GPT-4 Features)
 python3.9 rlhf_style_gpt4_warmup_training.py
 
 # Inference on all models (including Vanilla GPT-4, Vannila Mistral-7B)
@@ -63,7 +63,7 @@ python3.9 evaluation.py
 ```
 ### Example Synthesis
 
-The `abstracts` are not provided here, but they are present in the prompt template. The prompt template is available at: `templates/standardized_synthesis_generation.txt`.  Prompt Template Research Problem, and paper titles are:
+The `abstracts` are not provided here, but they are present in the prompt template. The prompt template is available at: `templates/standardized_synthesis_generation.txt`.  Prompt Template Research Problem and paper titles are:
 * **Research Problem**: `UV Visible spectroscopy in highly charged ions (HCI)`
 * **Paper 1 (title)**: `Visible spectrum of highly charged ions: The forbidden optical lines of Kr, Xe, and Ba ions in  the Ar I to Kr I isoelectronic sequence`
 * **Paper 2 (title)**: `Lifetime measurements in the ground configuration of and using an electron beam ion trap`
@@ -72,6 +72,6 @@ The `abstracts` are not provided here, but they are present in the prompt templa
 * **Paper 5 (title)**: `First results from the Freiburg Electron Beam Ion Trap FreEBIT`
 * **Objective**: `methodological`
 
-With `methodological` objective the synthesis form `SFT + RLAIF (w/ GPT-4 Feaatures)` Model is (the Word Count of this synthesis is `198`):
+With the `methodological` objective the synthesis form `SFT + RLAIF (w/ GPT-4 Features)` Model is (the Word Count of this synthesis is `198`):
 
 ```In the exploration of UV Visible spectroscopy in highly charged ions (HCI), various methodologies have been employed to probe the forbidden optical lines and transitions within these ions. The use of electron beam ion traps (EBITs) is a common technique across studies, providing a controlled environment for the excitation and observation of HCIs. The Lawrence Livermore National Laboratory EBIT was instrumental in identifying visible transitions in Kr, Xe, and Ba ions, with ionization stages determined by sweeping the electron beam energy (1). Similarly, the Freiburg EBIT, FreEBIT, was used to observe highly charged ions of Xe, Ba, W, Kr, and Ar, with charge states up to 63+, and measured forbidden transitions in the visible range (5). The precision of these EBITs is evident in the high-resolution optical imaging spectrograph, which achieved a resolution of γ/δγ ≈ 4000 in the optical range (5). Complementary to EBITs, atomic structure calculations have been employed to propose possible identifications for unidentified lines within the ground-state configuration and the first excited configuration of HCIs (1). Radiative lifetime measurements have also been conducted by monitoring the temporal behavior of radiative decays during magnetic trapping mode in an EBIT, providing insights into the temporal dynamics of HCI radiative decays (2). ```
