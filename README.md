@@ -26,7 +26,7 @@ This framework addresses the need for rapid, coherent, and contextually rich int
 The **ORKG Synthesis Dataset** is available at  https://anonymous.4open.science/r/scisynthesis-F6BA/.
 
 ### Installation
-You can also install and use the LLMs4OM using the following commands.
+You can also install and use the LLMs4Synthesis using the following commands.
 ```cmd
 git clone https://github.com/xxx/LLMs4Synthesis.git
 cd LLMs4Synthesis
