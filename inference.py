@@ -51,8 +51,7 @@ def inference(prompt, is_llama, stopping_criteria_list):
                                        top_k=20,
                                        top_p=0.95,
                                        do_sample=True,
-                                       num_return_sequences=1,
-                                       stopping_criteria=stopping_criteria_list)
+                                       num_return_sequences=1)
 
     if is_llama:
         response = generated_ids[0][model_inputs.shape[-1]:]
