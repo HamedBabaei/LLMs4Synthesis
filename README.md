@@ -2,14 +2,21 @@
  <img src="images/llms4synthesis-logo.png" width="800" height="170"/>
 </div>
 
+
+
+
+
 <div align="center">
 
+ 
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit)](https://github.com/pre-commit/pre-commit)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![Imports: isort](https://img.shields.io/badge/%20imports-isort-%231674b1?style=flat&labelColor=ef8336)](https://pycqa.github.io/isort/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 </div>
+
+<div style="color:red;">This work is accepted for publication at JCDL-2024 conference.</div>
 
 ### What is the LLMs4Synthesis?
 
@@ -23,12 +30,12 @@ This framework addresses the need for rapid, coherent, and contextually rich int
 
 
 ### ORKG synthesis dataset
-The **ORKG Synthesis Dataset** is available at  https://anonymous.4open.science/r/scisynthesis-F6BA/.
+The **ORKG Synthesis Dataset** is available at  [https://github.com/jd-coderepos/scisynthesis](https://github.com/jd-coderepos/scisynthesis)
 
 ### Installation
 You can also install and use the LLMs4Synthesis using the following commands.
 ```cmd
-git clone https://github.com/xxx/LLMs4Synthesis.git
+git clone https://github.com/HamedBabaei/LLMs4Synthesis.git
 cd LLMs4Synthesis
 
 pip install -r requirements.txt
