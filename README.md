@@ -82,3 +82,8 @@ The `abstracts` are not provided here, but they are present in the prompt templa
 With the `methodological` objective the synthesis form `SFT + RLAIF (w/ GPT-4 Features)` Model is (the Word Count of this synthesis is `198`):
 
 ```In the exploration of UV Visible spectroscopy in highly charged ions (HCI), various methodologies have been employed to probe the forbidden optical lines and transitions within these ions. The use of electron beam ion traps (EBITs) is a common technique across studies, providing a controlled environment for the excitation and observation of HCIs. The Lawrence Livermore National Laboratory EBIT was instrumental in identifying visible transitions in Kr, Xe, and Ba ions, with ionization stages determined by sweeping the electron beam energy (1). Similarly, the Freiburg EBIT, FreEBIT, was used to observe highly charged ions of Xe, Ba, W, Kr, and Ar, with charge states up to 63+, and measured forbidden transitions in the visible range (5). The precision of these EBITs is evident in the high-resolution optical imaging spectrograph, which achieved a resolution of γ/δγ ≈ 4000 in the optical range (5). Complementary to EBITs, atomic structure calculations have been employed to propose possible identifications for unidentified lines within the ground-state configuration and the first excited configuration of HCIs (1). Radiative lifetime measurements have also been conducted by monitoring the temporal behavior of radiative decays during magnetic trapping mode in an EBIT, providing insights into the temporal dynamics of HCI radiative decays (2). ```
+
+### Citation
+```
+```
+
