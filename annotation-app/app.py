@@ -15,11 +15,9 @@ def display_json_item(data, index):
         if key == 'synthesis':
             st.write(f"**LEN Synthesis:** {len(value.split())}")
         if key == "reward":
-            # Use st.text_input to get the updated value
             updated_value = st.text_input(f"{key}:", value, key=f"{index}_{key}")
-            # Update the item in the data list
             item[key] = int(updated_value)  # Assuming reward is an integer
-    # Calculate reward statistics
+
     reward_values = [item['reward'] for item in data]
     reward_counts = Counter(reward_values)
 
